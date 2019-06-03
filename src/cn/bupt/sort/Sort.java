@@ -11,7 +11,7 @@ public class Sort {
 			a[i]=a[i]^a[j];
 		}
 	}
-	//πÈ≤¢≈≈–Ú
+	//?È≤¢????
 	public static void mergeSort(int a[],int left,int right){
 		if(left<right){
 			int mid=(left+right)>>1;
@@ -42,7 +42,7 @@ public class Sort {
 			a[left++]=temp[pos++];
 		}
 	}
-	//øÏÀŸ≈≈–Ú
+	//????????
 	public static void quickSort(int a[],int left,int right){
 		int temp=a[left];
 		int i=left,j=right;
@@ -67,6 +67,18 @@ public class Sort {
 			quickSort(a, i+1, right);
 		}
 	}
+
+	public static void bubbing(int a[]){
+	    for (int i=0;i<a.length;i++){
+	        for (int j=1;j<a.length-i;j++){
+	            if (a[j]<a[j-1]){
+	                int tmp =a[j];
+	                a[j]=a[j-1];
+	                a[j-1]=tmp;
+                }
+            }
+        }
+    }
 	
 	public static void main(String[] args) {
 		int a[]={10,5,7,9,3,4,2,1,5,6,0,3,9,8,7,4};

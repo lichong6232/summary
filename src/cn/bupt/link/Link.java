@@ -1,6 +1,8 @@
 package cn.bupt.link;
 
 
+import java.util.List;
+
 public class Link {
 	
 	//遍历链表
@@ -36,7 +38,7 @@ public class Link {
 	}
 	
 	//反转链表
-	 public ListNode ReverseList(ListNode head) {
+	 public ListNode reverseList(ListNode head) {
 		 ListNode pre=null;
 		 ListNode current=head;
 		 while(current!=null){
@@ -48,13 +50,36 @@ public class Link {
 		 return pre;
 
 	 }
+
+	 public ListNode reverseList1(ListNode head){
+	    ListNode pre =head;
+	    while (head.next!=null){
+            ListNode next = head.next;
+            head.next = next.next;
+            next.next = pre;
+            pre = next;
+        }
+        return pre;
+     }
+
+     public ListNode reverseList2(ListNode head){
+	     ListNode dummp = new ListNode(0);
+	     dummp.next = head;
+	     while (head.next!=null){
+             ListNode next = head.next;
+             head.next = next.next;
+             next.next = dummp.next;
+             dummp.next = next;
+         }
+         return dummp.next;
+     }
 	 
 	 //链表的归并排序
 	 public ListNode mergeSort(ListNode head){
 		 if(head==null||head.next==null)
 			 return head;
 		 ListNode mid=getMide(head);
-		 ListNode right=mid.next;;
+		 ListNode right=mid.next;
 		 mid.next=null;
 		 return merge(mergeSort(head), mergeSort(right));
 	 }
@@ -180,15 +205,23 @@ public class Link {
 		 }
 		 return slow;
 	 }
+
+	 private static void out(ListNode head){
+	     ListNode current = head;
+	     while (current!=null){
+             System.out.println(current.val);
+             current = current.next;
+         }
+     }
 	
 	public static void main(String[] args) {
 		Link link=new Link();
 		ListNode root=new ListNode(0);
 		ListNode node1=new ListNode(1);
-		ListNode node2=new ListNode(5);
-		ListNode node3=new ListNode(4);
-		ListNode node4=new ListNode(3);
-		ListNode node5=new ListNode(2);
+		ListNode node2=new ListNode(2);
+		ListNode node3=new ListNode(3);
+		ListNode node4=new ListNode(4);
+		ListNode node5=new ListNode(5);
 		ListNode node6=new ListNode(6);
 		root.next=node1;
 		node1.next=node2;
@@ -196,7 +229,7 @@ public class Link {
 		node3.next=node4;
 		node4.next=node5;
 		node5.next=node6;
-		node6.next=node4;
+//		node6.next=node4;
 //		link.printListFromTailToHead(root);
 		/*ListNode nodek=link.FindKthToTail(root, 1);
 		System.out.println(nodek.val);*/
@@ -208,11 +241,13 @@ public class Link {
 		link.printList(quickSortNode);*/
 		/*ListNode insertNode=link.insertSort(root);
 		link.printList(insertNode);*/
-		ListNode circleNode=link.detectCycle(root);
-		System.out.println(circleNode.val);
-		
-		
-		
-	}
+//		ListNode circleNode=link.detectCycle(root);
+//		System.out.println(circleNode.val);
+        ListNode listNode = link.reverseList2(root);
+        out(listNode);
+
+
+
+    }
 
 }
